@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cutImgPDF - Maquetador Visual</title>
+    <!-- Outfit Font for premium UI look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="glow-orb" id="orb-1"></div>
+    <div class="glow-orb" id="orb-2"></div>
+
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="app-header glass-panel">
+            <div class="logo-area">
+                <span class="logo-icon">📄</span>
+                <div class="logo-text">
+                    <h1>cutImgPDF</h1>
+                    <p>Maquetador de Reportes y Recorte Dinámico</p>
+                </div>
+            </div>
+            
+            <!-- Global Document Configurations -->
+            <div class="doc-config">
+                <div class="config-field">
+                    <label for="doc-filename">Nombre PDF</label>
+                    <input type="text" id="doc-filename" value="mi_reporte.pdf" placeholder="nombre.pdf">
+                </div>
+                <div class="config-field">
+                    <label for="doc-pagesize">Tamaño Página</label>
+                    <select id="doc-pagesize">
+                        <option value="LETTER">Letter (Carta)</option>
+                        <option value="A4">A4</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label for="doc-margins">Márgenes (pt)</label>
+                    <input type="number" id="doc-margins" value="54" min="18" max="100" title="Márgenes en puntos (54pt = 0.75 pulgadas)">
+                </div>
+                <div class="config-field">
+                    <label for="doc-min-split" title="Espacio vertical mínimo antes de saltar de página en recortes">Corte Mín (pt)</label>
+                    <input type="number" id="doc-min-split" value="100" min="50" max="250">
+                </div>
+            </div>
+
+            <button id="btn-generate" class="glow-button">
+                <span>Generar PDF</span>
+                <div class="spinner hidden"></div>
+            </button>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="app-main">
+            <!-- Sidebar: Element Palette -->
+            <aside class="sidebar glass-panel">
+                <h2>Elementos</h2>
+                <p class="sidebar-help">Haz clic para agregar al lienzo del reporte:</p>
+                
+                <div class="element-buttons">
+                    <button class="btn-palette" data-type="title">
+                        <span class="icon">👑</span>
+                        <div class="text">
+                            <h3>Título Principal</h3>
+                            <p>Encabezado destacado</p>
+                        </div>
+                    </button>
+                    
+                    <button class="btn-palette" data-type="subtitle">
+                        <span class="icon">📌</span>
+                        <div class="text">
+                            <h3>Subtítulo</h3>
+                            <p>Sección de contenido</p>
+                        </div>
+                    </button>
+                    
+                    <button class="btn-palette" data-type="text">
+                        <span class="icon">📝</span>
+                        <div class="text">
+                            <h3>Párrafo de Texto</h3>
+                            <p>Descripción detallada</p>
+                        </div>
+                    </button>
+                    
+                    <button class="btn-palette" data-type="image">
+                        <span class="icon">🖼️</span>
+                        <div class="text">
+                            <h3>Imagen Simple</h3>
+                            <p>Captura larga auto-recortable</p>
+                        </div>
+                    </button>
+                    
+                    <button class="btn-palette" data-type="double_images">
+                        <span class="icon">👥</span>
+                        <div class="text">
+                            <h3>Doble Imagen</h3>
+                            <p>Dos imágenes lado a lado</p>
+                        </div>
+                    </button>
+                </div>
+                
+                <div class="sidebar-footer">
+                    <p>💡 <b>Consejo:</b> Las imágenes extremadamente largas se dividirán en píxeles y se distribuirán de forma fluida en las páginas del PDF.</p>
+                </div>
+            </aside>
+
+            <!-- Report Workspace Area -->
+            <section class="workspace glass-panel">
+                <div class="workspace-header">
+                    <h2>Lienzo del Reporte</h2>
+                    <span id="elements-count">0 elementos</span>
+                </div>
+                
+                <!-- Dynamic Blocks List -->
+                <div id="blocks-container" class="blocks-list">
+                    <!-- Placeholder when empty -->
+                    <div id="empty-placeholder" class="empty-state">
+                        <span class="empty-icon">✨</span>
+                        <h3>Lienzo Vacío</h3>
+                        <p>Agrega elementos desde el panel izquierdo para estructurar tu documento PDF.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Alert / Toast Modal -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

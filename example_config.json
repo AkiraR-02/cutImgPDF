@@ -1,0 +1,47 @@
+[
+  {
+    "type": "title",
+    "text": "Informe Técnico: Análisis y Estructura del Módulo de Autenticación"
+  },
+  {
+    "type": "text",
+    "text": "Este documento ha sido generado automáticamente utilizando la herramienta <b>cutImgPDF</b>. El propósito principal es demostrar la funcionalidad crítica de división y corte horizontal de imágenes extremadamente largas, combinada con la inserción de títulos, subtítulos e imágenes en paralelo."
+  },
+  {
+    "type": "subtitle",
+    "text": "1. Código del Middleware de Validación de Tokens"
+  },
+  {
+    "type": "text",
+    "text": "El siguiente bloque muestra una captura de pantalla extremadamente vertical (2500 píxeles de alto) que contiene el código completo del middleware. El motor calculará el espacio restante en esta página y recortará la imagen en las partes que sean necesarias para continuar en las páginas siguientes de manera limpia."
+  },
+  {
+    "type": "image",
+    "path": "test_assets/tall_code.png"
+  },
+  {
+    "type": "subtitle",
+    "text": "2. Arquitectura y Módulos de Soporte (Comparativa)"
+  },
+  {
+    "type": "text",
+    "text": "Aquí demostramos la inserción de dos imágenes en paralelo (lado a lado). El motor escala cada una para ocupar exactamente el 50% del ancho imprimible disponible y mantiene la alineación horizontal de forma perfecta."
+  },
+  {
+    "type": "double_images",
+    "path1": "test_assets/standard1.png",
+    "path2": "test_assets/standard2.png"
+  },
+  {
+    "type": "subtitle",
+    "text": "3. Captura del Panel de Control del Servidor"
+  },
+  {
+    "type": "text",
+    "text": "Una captura de pantalla estándar (1200x800 píxeles). El motor la escalará para que ocupe todo el ancho disponible sin deformarla."
+  },
+  {
+    "type": "image",
+    "path": "test_assets/regular_screenshot.png"
+  }
+]
