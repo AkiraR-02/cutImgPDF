@@ -98,10 +98,10 @@ class PDFReportGenerator:
         self._init_styles()
 
     def _init_styles(self):
-        # Premium color palette
-        self.color_primary = colors.HexColor("#0F172A")    # Deep slate for main title
-        self.color_secondary = colors.HexColor("#1E3A8A")  # Royal blue for subtitles
-        self.color_body = colors.HexColor("#334155")       # Charcoal for body text
+        # Pure black color palette
+        self.color_primary = colors.black
+        self.color_secondary = colors.black
+        self.color_body = colors.black
         
         self.title_style = ParagraphStyle(
             'DocTitle',
@@ -110,6 +110,7 @@ class PDFReportGenerator:
             fontSize=16,
             leading=20,
             textColor=self.color_primary,
+            alignment=1, # 1 = centered alignment
             spaceAfter=15
         )
         
@@ -166,14 +167,6 @@ class PDFReportGenerator:
         
         # Update cursor
         self.y_cursor += h + 15
-        
-        # Draw a beautiful horizontal accent line below the title
-        self.canvas.saveState()
-        self.canvas.setStrokeColor(colors.HexColor("#3B82F6")) # Accent blue
-        self.canvas.setLineWidth(2)
-        self.canvas.line(self.m_left, self._to_canvas_y(self.y_cursor - 5), self.m_left + 60, self._to_canvas_y(self.y_cursor - 5))
-        self.canvas.restoreState()
-        self.y_cursor += 10
 
     def add_subtitle(self, text):
         """Adds a section subtitle."""
