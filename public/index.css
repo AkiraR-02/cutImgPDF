@@ -169,6 +169,11 @@ body {
     box-shadow: 0 0 8px var(--accent-glow);
 }
 
+.config-field select option {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+}
+
 .config-field input[type="number"] {
     width: 75px;
 }
