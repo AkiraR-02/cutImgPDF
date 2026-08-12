@@ -64,57 +64,71 @@
 
         <!-- Main Workspace -->
         <main class="app-main">
-            <!-- Sidebar: Element Palette -->
-            <aside class="sidebar glass-panel">
-                <h2>Elementos</h2>
-                <p class="sidebar-help">Haz clic para agregar al lienzo del reporte:</p>
-                
-                <div class="element-buttons">
-                    <button class="btn-palette" data-type="title">
-                        <span class="icon">👑</span>
-                        <div class="text">
-                            <h3>Título Principal</h3>
-                            <p>Encabezado destacado</p>
-                        </div>
-                    </button>
+            <!-- Left Column: Sidebar & Map -->
+            <div class="left-column">
+                <!-- Sidebar: Element Palette -->
+                <aside class="sidebar glass-panel">
+                    <h2>Elementos</h2>
+                    <p class="sidebar-help">Haz clic para agregar al lienzo del reporte:</p>
                     
-                    <button class="btn-palette" data-type="subtitle">
-                        <span class="icon">📌</span>
-                        <div class="text">
-                            <h3>Subtítulo</h3>
-                            <p>Sección de contenido</p>
-                        </div>
-                    </button>
+                    <div class="element-buttons">
+                        <button class="btn-palette" data-type="title">
+                            <span class="icon">👑</span>
+                            <div class="text">
+                                <h3>Título Principal</h3>
+                                <p>Encabezado destacado</p>
+                            </div>
+                        </button>
+                        
+                        <button class="btn-palette" data-type="subtitle">
+                            <span class="icon">📌</span>
+                            <div class="text">
+                                <h3>Subtítulo</h3>
+                                <p>Sección de contenido</p>
+                            </div>
+                        </button>
+                        
+                        <button class="btn-palette" data-type="text">
+                            <span class="icon">📝</span>
+                            <div class="text">
+                                <h3>Párrafo de Texto</h3>
+                                <p>Descripción detallada</p>
+                            </div>
+                        </button>
+                        
+                        <button class="btn-palette" data-type="image">
+                            <span class="icon">🖼️</span>
+                            <div class="text">
+                                <h3>Imagen Simple</h3>
+                                <p>Captura larga auto-recortable</p>
+                            </div>
+                        </button>
+                        
+                        <button class="btn-palette" data-type="double_images">
+                            <span class="icon">👥</span>
+                            <div class="text">
+                                <h3>Doble Imagen</h3>
+                                <p>Dos imágenes lado a lado</p>
+                            </div>
+                        </button>
+                    </div>
                     
-                    <button class="btn-palette" data-type="text">
-                        <span class="icon">📝</span>
-                        <div class="text">
-                            <h3>Párrafo de Texto</h3>
-                            <p>Descripción detallada</p>
-                        </div>
-                    </button>
-                    
-                    <button class="btn-palette" data-type="image">
-                        <span class="icon">🖼️</span>
-                        <div class="text">
-                            <h3>Imagen Simple</h3>
-                            <p>Captura larga auto-recortable</p>
-                        </div>
-                    </button>
-                    
-                    <button class="btn-palette" data-type="double_images">
-                        <span class="icon">👥</span>
-                        <div class="text">
-                            <h3>Doble Imagen</h3>
-                            <p>Dos imágenes lado a lado</p>
-                        </div>
-                    </button>
+                    <div class="sidebar-footer">
+                        <p>💡 <b>Consejo:</b> Las imágenes extremadamente largas se dividirán en píxeles y se distribuirán de forma fluida en las páginas del PDF.</p>
+                    </div>
+                </aside>
+
+                <!-- Document Map Card -->
+                <div class="map-card glass-panel">
+                    <div class="map-header">
+                        <h2>Mapa del Reporte</h2>
+                        <span id="map-count">0 elementos</span>
+                    </div>
+                    <div id="map-items-container" class="map-items-list">
+                        <div class="map-empty-state">No hay elementos en el mapa</div>
+                    </div>
                 </div>
-                
-                <div class="sidebar-footer">
-                    <p>💡 <b>Consejo:</b> Las imágenes extremadamente largas se dividirán en píxeles y se distribuirán de forma fluida en las páginas del PDF.</p>
-                </div>
-            </aside>
+            </div>
 
             <!-- Report Workspace Area -->
             <section class="workspace glass-panel">

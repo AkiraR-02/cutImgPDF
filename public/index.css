@@ -676,3 +676,132 @@ body {
     background-color: #ffffff;
 }
 
+/* Left Column Layout */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Map Card CSS */
+.map-card {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 400px;
+}
+
+.map-card h2 {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.map-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--panel-border);
+    padding-bottom: 8px;
+}
+
+#map-count {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.map-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+    max-height: 300px;
+    padding-right: 4px;
+}
+
+/* Custom Scrollbar for Map */
+.map-items-list::-webkit-scrollbar {
+    width: 4px;
+}
+.map-items-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.map-items-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 99px;
+}
+.map-items-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.map-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.map-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--card-hover-border);
+    transform: translateX(2px);
+}
+
+.map-item-icon {
+    font-size: 16px;
+}
+
+.map-item-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+}
+
+.map-item-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.map-item-preview {
+    font-size: 10px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.map-empty-state {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Card Focus Pulse Animation */
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+        border-color: var(--panel-border);
+    }
+    30% {
+        box-shadow: 0 0 15px var(--accent-glow);
+        border-color: var(--accent-blue);
+    }
+    100% {
+        box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+        border-color: var(--panel-border);
+    }
+}
+
+.block-card.highlight-glow {
+    animation: glowPulse 1.5s ease-out;
+}
+
+

@@ -119,6 +119,94 @@ function renderBlocks() {
         blocksContainer.appendChild(card);
         setupImageDragAndDrop(block.id);
     });
+
+    renderMap();
+}
+
+// Render the list of items in the map/outline card
+function renderMap() {
+    const mapItemsContainer = document.getElementById('map-items-container');
+    const mapCountSpan = document.getElementById('map-count');
+    if (!mapItemsContainer) return;
+
+    // Clear previous items
+    mapItemsContainer.innerHTML = '';
+
+    if (mapCountSpan) {
+        mapCountSpan.textContent = `${blocks.length} ${blocks.length === 1 ? 'elemento' : 'elementos'}`;
+    }
+
+    if (blocks.length === 0) {
+        const emptyState = document.createElement('div');
+        emptyState.className = 'map-empty-state';
+        emptyState.textContent = 'No hay elementos en el mapa';
+        mapItemsContainer.appendChild(emptyState);
+        return;
+    }
+
+    blocks.forEach((block, index) => {
+        const item = document.createElement('div');
+        item.className = 'map-item';
+        item.setAttribute('data-target-id', block.id);
+
+        const iconSpan = document.createElement('span');
+        iconSpan.className = 'map-item-icon';
+        iconSpan.textContent = getIconForType(block.type);
+        item.appendChild(iconSpan);
+
+        const details = document.createElement('div');
+        details.className = 'map-item-details';
+
+        const nameLabel = document.createElement('span');
+        nameLabel.className = 'map-item-name';
+        nameLabel.textContent = `${index + 1}. ${translateType(block.type)}`;
+        details.appendChild(nameLabel);
+
+        const previewSpan = document.createElement('span');
+        previewSpan.className = 'map-item-preview';
+        previewSpan.textContent = getPreviewForBlock(block);
+        details.appendChild(previewSpan);
+
+        item.appendChild(details);
+
+        // Click event listener for navigation
+        item.addEventListener('click', () => {
+            const cardEl = document.getElementById(block.id);
+            if (cardEl) {
+                cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                cardEl.classList.add('highlight-glow');
+                setTimeout(() => {
+                    cardEl.classList.remove('highlight-glow');
+                }, 1500);
+            }
+        });
+
+        mapItemsContainer.appendChild(item);
+    });
+}
+
+function getIconForType(type) {
+    switch (type) {
+        case 'title': return '👑';
+        case 'subtitle': return '📌';
+        case 'text': return '📝';
+        case 'image': return '🖼️';
+        case 'double_images': return '👥';
+        default: return '📄';
+    }
+}
+
+function getPreviewForBlock(block) {
+    if (block.type === 'title' || block.type === 'subtitle' || block.type === 'text') {
+        return block.text.trim() || '(Sin texto)';
+    } else if (block.type === 'image') {
+        return block.fileName1 || '(Sin imagen seleccionada)';
+    } else if (block.type === 'double_images') {
+        const name1 = block.fileName1 || 'Vacio';
+        const name2 = block.fileName2 || 'Vacio';
+        return `${name1} | ${name2}`;
+    }
+    return '';
 }
 
 // Save inputs currently typed in the DOM to the internal state array
@@ -202,6 +290,10 @@ function createBlockCard(block, index) {
         input.className = 'block-input';
         input.value = block.text;
         input.placeholder = 'Escribe el título principal aquí...';
+        input.addEventListener('input', () => {
+            block.text = input.value;
+            renderMap();
+        });
         content.appendChild(input);
     } 
     else if (block.type === 'subtitle') {
@@ -210,6 +302,10 @@ function createBlockCard(block, index) {
         input.className = 'block-input';
         input.value = block.text;
         input.placeholder = 'Escribe el subtítulo de la sección...';
+        input.addEventListener('input', () => {
+            block.text = input.value;
+            renderMap();
+        });
         content.appendChild(input);
     } 
     else if (block.type === 'text') {
@@ -217,6 +313,10 @@ function createBlockCard(block, index) {
         textarea.className = 'block-input';
         textarea.value = block.text;
         textarea.placeholder = 'Escribe el párrafo explicativo... Puedes usar <b>negritas</b> o <i>cursivas</i>.';
+        textarea.addEventListener('input', () => {
+            block.text = textarea.value;
+            renderMap();
+        });
         content.appendChild(textarea);
     } 
     else if (block.type === 'image') {
@@ -348,6 +448,7 @@ function handleSelectedFile(blockId, fileIndex, file) {
     }
 
     displayImagePreview(blockId, fileIndex, file);
+    renderMap();
 }
 
 // Render image preview
@@ -389,6 +490,8 @@ function displayImagePreview(blockId, fileIndex, file) {
         // Reset input file value
         const input = document.getElementById(`file-${fileIndex}-${blockId}`);
         if (input) input.value = '';
+        
+        renderMap();
     });
 }
 
