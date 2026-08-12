@@ -629,3 +629,50 @@ body {
         opacity: 1;
     }
 }
+
+/* Custom Toggle Switch */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    height: 34px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--panel-border);
+    border-radius: 999px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--text-muted);
+    border-radius: 50%;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-input:checked + .toggle-switch {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.toggle-input:checked + .toggle-switch::after {
+    transform: translateX(22px);
+    background-color: #ffffff;
+}
+

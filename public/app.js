@@ -66,10 +66,15 @@ function addBlock(type) {
     renderBlocks();
     updateUIState();
     
-    // Smooth scroll to the newly added block
-    const cardEl = document.getElementById(blockId);
-    if (cardEl) {
-        cardEl.scrollIntoView({ behavior: 'smooth' });
+    // Smooth scroll to the newly added block if auto-scroll is enabled
+    const autoScrollCheckbox = document.getElementById('doc-autoscroll');
+    const autoScrollEnabled = autoScrollCheckbox ? autoScrollCheckbox.checked : true;
+    
+    if (autoScrollEnabled) {
+        const cardEl = document.getElementById(blockId);
+        if (cardEl) {
+            cardEl.scrollIntoView({ behavior: 'smooth' });
+        }
     }
 }
 
